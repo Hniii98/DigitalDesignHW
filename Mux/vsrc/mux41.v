@@ -8,7 +8,7 @@ MuxKeyWithDefault #(
     .NR_KEY(4), 
     .KEY_LEN(2),
     .DATA_LEN(2)
-) i0 (
+)i0(
     .out(F),
     .key(Y),
     .default_out(2'b00),
