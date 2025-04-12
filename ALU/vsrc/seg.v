@@ -15,9 +15,9 @@ module seg (
     
 );
 
-parameter SEG_OFF = 8'b1111_1111; // all off
-parameter SEG_0   = 8'b0000_0011; // 0
-parameter SEG_1   = 8'b1001_1111; // 1
+localparam SEG_OFF = 8'b1111_1111; // all off
+localparam SEG_0   = 8'b0000_0011; // 0
+localparam SEG_1   = 8'b1001_1111; // 1
 
 function automatic [7:0] get_seg_value(input bit condition);
     get_seg_value = condition ? SEG_1 : SEG_0;
