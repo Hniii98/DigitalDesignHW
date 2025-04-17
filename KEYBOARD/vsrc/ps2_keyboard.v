@@ -49,19 +49,18 @@ module ps2_keyboard(
                 if ((buffer[0] == 0) &&  // start bit
                     (ps2_data)       &&  // stop bit
                     (^buffer[9:1])   &&  // odd  parity
-                    !overflow) begin     
+                    !overflow)begin     
                     fifo[w_ptr] <= buffer[8:1];  // kbd scan code
                     w_ptr <= (w_ptr + 3'b1) & 3'b111; // mod
                     ready <= 1'b1;
                     is_valid_frame <= 1;
                     is_break_code <= (buffer[8:1] == 8'hF0);
-                    overflow <= overflow | (r_ptr == ((w_ptr + 3'b1)&3'b111));
+                    overflow <= overflow | (r_ptr == ((w_ptr + 3'b1) & 3'b111));
+                end else begin
+                    is_valid_frame <= 0;    
                 end
-                // if overflow or frame illegal, just simplely drop buffer.
-                is_valid_frame <= 0;
                 count <= 0;     // for next frame
-              end 
-              else begin
+              end else begin
                 buffer[count] <= ps2_data;  // store ps2_data in buffer
                 count <= count + 3'b1;
               end
