@@ -34,10 +34,10 @@ always @(posedge clk) begin
     end
 end
 
-// press_pulse: 从 IDLE 进入 PRESS 时产生单周期脉冲
+
 assign press_pulse = (state == PRESS) &&  is_valid_frame ;
 
-// key_released: 从 BREAK_PREFIX 返回 IDLE 时产生单周期脉冲
+
 assign key_released = (state == IDLE) &&  is_valid_frame ;
 
 endmodule

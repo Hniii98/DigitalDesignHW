@@ -1,6 +1,7 @@
 TOPNAME = top
 NXDC_FILES = constr/top.nxdc
 INC_PATH ?=
+DESIGN ?= $(TOPNAME)
 
 VERILATOR = verilator
 VERILATOR_CFLAGS += -MMD --build -cc  \
@@ -38,6 +39,8 @@ $(BIN): $(VSRCS) $(CSRCS) $(NVBOARD_ARCHIVE)
 		$(addprefix -CFLAGS , $(CXXFLAGS)) $(addprefix -LDFLAGS , $(LDFLAGS)) \
 		--Mdir $(OBJ_DIR) --exe -o $(abspath $(BIN))
 
+include ../Makefile
+
 all: default
 
 run: $(BIN)
@@ -45,5 +48,6 @@ run: $(BIN)
 
 clean:
 	rm -rf $(BUILD_DIR)
+	rm -rf result/
 
 .PHONY: default all clean run

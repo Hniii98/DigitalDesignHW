@@ -38,6 +38,8 @@ $(BIN): $(VSRCS) $(CSRCS) $(NVBOARD_ARCHIVE)
 		$(addprefix -CFLAGS , $(CXXFLAGS)) $(addprefix -LDFLAGS , $(LDFLAGS)) \
 		--Mdir $(OBJ_DIR) --exe -o $(abspath $(BIN))
 
+include ../Makefile
+
 all: default
 
 run: $(BIN)
@@ -45,5 +47,6 @@ run: $(BIN)
 
 clean:
 	rm -rf $(BUILD_DIR)
+	rm -rf result/
 
 .PHONY: default all clean run
