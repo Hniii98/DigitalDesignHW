@@ -24,6 +24,20 @@ function automatic [7:0] get_seg_value(input bit condition);
 endfunction
 
 always @(*) begin
+    $display("|----------------------------------------------|");
+    $display("|SW0-SW3:input a      | SW4-SW7:input b        |");
+    $display("|    ALL INPUT TRANSLATE INTO SIGNED NUMBER    |            |");
+    $display("|----------------------------------------------|");
+    $display("|SW8-SW10 represent optype                     |");
+    $display("|000:a+b 001:a-b 010:Not a 011:a and b         |");
+    $display("|100:a or b 101:a xor b 110:a < b ? 111:a == b?|");
+    $display("|----------------------------------------------|");
+    $display("|LD0-LD7 represent corresponsing data bit      |");
+    $display("|LD8:carry LD9:zero LD10:overflow              |");
+    $display("|----------------------------------------------|");
+    $display("|SEG0-SEG3 represent sum of a and b            |");
+    $display("|SEG4:carry SEG5:zero SEG5:overflow            |");
+    $display("|----------------------------------------------|");
     {seg6, seg5, seg4, seg3, seg2, seg1, seg0} = {7{SEG_OFF}}; // off all seg
     case(optype)
         3'h0, 3'h1: begin   // add、sub, all number need to display in segs
